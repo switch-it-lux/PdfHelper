@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <AssemblyName>Sit.PdfHelper.Tests</AssemblyName>
+    <RootNamespace>Sit.Pdf.Tests</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\SampleEml1.eml" />
+    <None Remove="Resources\SampleEml2.eml" />
+    <None Remove="Resources\SampleMsg1.msg" />
+    <None Remove="Resources\SampleMsg2.msg" />
+    <None Remove="Resources\SampleOcredPdf1.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PdfHelper\PdfHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SampleEml1.eml" />
+    <EmbeddedResource Include="Resources\SampleEml2.eml" />
+    <EmbeddedResource Include="Resources\SampleHocr1.hocr" />
+    <EmbeddedResource Include="Resources\SampleMsg1.msg" />
+    <EmbeddedResource Include="Resources\SampleMsg2.msg" />
+    <EmbeddedResource Include="Resources\SampleOcredPdf1.pdf" />
+    <EmbeddedResource Include="Resources\SamplePdf2.pdf" />
+    <EmbeddedResource Include="Resources\SampleImage1.jpg" />
+    <EmbeddedResource Include="Resources\SampleImage2.jpg" />
+    <EmbeddedResource Include="Resources\SampleImageInvalid.jpg" />
+    <EmbeddedResource Include="Resources\SamplePdfInvalid.pdf" />
+    <EmbeddedResource Include="Resources\SamplePdf1.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

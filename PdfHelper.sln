@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfHelper", "src\PdfHelper\PdfHelper.csproj", "{4E83ECAF-941A-49D0-9807-1723080408E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D2188150-A287-471D-825D-B4E497EDFA72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{3EE82E86-1975-437E-958D-C1A8E33F8CD8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		LICENSE.md = LICENSE.md
+		nuget.config = nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "src\Tests\Tests.csproj", "{A4E31BDD-4A5B-419C-963F-D67CBEFD4152}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E83ECAF-941A-49D0-9807-1723080408E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E83ECAF-941A-49D0-9807-1723080408E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E83ECAF-941A-49D0-9807-1723080408E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E83ECAF-941A-49D0-9807-1723080408E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4E31BDD-4A5B-419C-963F-D67CBEFD4152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E31BDD-4A5B-419C-963F-D67CBEFD4152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E31BDD-4A5B-419C-963F-D67CBEFD4152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E31BDD-4A5B-419C-963F-D67CBEFD4152}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E83ECAF-941A-49D0-9807-1723080408E8} = {D2188150-A287-471D-825D-B4E497EDFA72}
+		{A4E31BDD-4A5B-419C-963F-D67CBEFD4152} = {D2188150-A287-471D-825D-B4E497EDFA72}
+	EndGlobalSection
+EndGlobal

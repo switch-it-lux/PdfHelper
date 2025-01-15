@@ -1,0 +1,45 @@
+Sender: "john.doe@domain.com" <john.doe@domain.com>
+From: "john.doe@domain.com" <john.doe@domain.com>
+Subject: Test
+To: "bill@switch.com" <bill@switch.com>
+Cc: 
+Bcc: 
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--_=_NextPart849_15b05db7-8a64-424a-8e52-da46c16270e8"
+
+This is a multi-part message in MIME format.
+
+----_=_NextPart849_15b05db7-8a64-424a-8e52-da46c16270e8
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Bill,
+
+I hope you are well=2E
+
+Sed dignissim lacinia nunc=2E Curabitur tortor=2E Pellentesque nibh=2E Aene=
+an quam=2E In scelerisque semat dolor=2E Maecenas mattis=2E Sed convallis t=
+ristique sem=2E Proin ut ligula vel nunc egestas porttitor=2EMorbi lectus r=
+isus, iaculis vel, suscipit quis, luctus non, massa=2E Fusce ac turpis quis=
+ ligula laciniaaliquet=2E Mauris ipsum=2E Nulla metus metus, ullamcorper ve=
+l, tincidunt sed, euismod in, nibh=2E
+
+Thank you,
+
+John
+
+----_=_NextPart849_15b05db7-8a64-424a-8e52-da46c16270e8
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"><p=
+>Dear <b>Bill</b>,</p><p>I hope you are well=2E</p><p>Sed dignissim lacinia=
+ nunc=2E Curabitur tortor=2E Pellentesque nibh=2E Aenean quam=2E In sceleri=
+sque semat dolor=2E Maecenas mattis=2E Sed convallis tristique sem=2E Proin=
+ ut ligula vel nunc egestas porttitor=2EMorbi lectus risus, iaculis vel, su=
+scipit quis, luctus non, massa=2E Fusce ac turpis quis ligula laciniaalique=
+t=2E Mauris ipsum=2E Nulla metus metus, ullamcorper vel, tincidunt sed, eui=
+smod in, nibh=2E</p><p>Thank you,</p><p><b>John</b></p>
+----_=_NextPart849_15b05db7-8a64-424a-8e52-da46c16270e8--
+

@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Sit.PdfHelper</AssemblyName>
+    <RootNamespace>Sit.Pdf</RootNamespace>
+    <Version>1.0.0-alpha.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\Sit.PdfHelper.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <Authors>Switch IT</Authors>
+    <Description>PDF basic utilities</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.60" />
+    <PackageReference Include="itext7" Version="7.1.15" />
+    <PackageReference Include="itext7.pdfhtml" Version="3.0.4" />
+    <PackageReference Include="MailKit" Version="4.9.0" />
+    <PackageReference Include="MsgReader" Version="4.4.10" />
+    <PackageReference Include="PDFtoImage" Version="4.1.1" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.11" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
+</Project>
