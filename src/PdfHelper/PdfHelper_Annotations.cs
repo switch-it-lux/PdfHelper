@@ -3,7 +3,7 @@ using System.IO;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Annot;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public partial class PdfHelper {
 

@@ -3,7 +3,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     internal static class StreamExtensions {
 

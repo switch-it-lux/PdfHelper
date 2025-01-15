@@ -11,35 +11,35 @@ using iText.Layout;
 using iText.Layout.Element;
 using MimeKit;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public enum EmailType { Mime, OutlookMsg }
 
     public partial class PdfHelper {
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with one or more images. Each image will induce a new page.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with one or more images. Each image will induce a new page.
         /// </summary>
         public static PdfHelper FromImages(IEnumerable<string> imageFilePaths, float margin = 0f, float scale = 1f, PageSize? pageSize = null) {
             return FromImages(imageFilePaths.Select(x => File.OpenRead(x).ReadAsBytes(closeStream: true)), margin, scale, pageSize);
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with one or more images. Each image will induce a new page.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with one or more images. Each image will induce a new page.
         /// </summary>
         public static PdfHelper FromImages(IEnumerable<Stream> images, float margin = 0f, float scale = 1f, PageSize? pageSize = null) {
             return FromImages(images.Select(x => x.ReadAsBytes()), margin, scale, pageSize);
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with one or more bitmaps. Each bitmap will induce a new page.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with one or more bitmaps. Each bitmap will induce a new page.
         /// </summary>
         public static PdfHelper FromImages(IEnumerable<Bitmap> bitmaps, float margin = 0f, float scale = 1f, PageSize? pageSize = null) {
             return FromImages(bitmaps.Select(x => x.ReadAsBytes()), margin, scale, pageSize);
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with one or more images. Each image will induce a new page.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with one or more images. Each image will induce a new page.
         /// </summary>
         public static PdfHelper FromImages(IEnumerable<byte[]> images, float margin = 0f, float scale = 1f, PageSize? pageSize = null) {
             if (images == null || images.Count() == 0) throw new ArgumentNullException(nameof(images));
@@ -65,14 +65,14 @@ namespace Sit.Pdf {
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class from an HTML string.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class from an HTML string.
         /// </summary>
         public static PdfHelper FromHtml(Stream html, PageSize pageSize) {
             return FromHtml(html.ReadAsString(), pageSize);
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class from an HTML string.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class from an HTML string.
         /// </summary>
         public static PdfHelper FromHtml(string html, PageSize pageSize) {
             var pdfStream = new MemoryStream();
@@ -88,7 +88,7 @@ namespace Sit.Pdf {
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with an email message.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with an email message.
         /// </summary>
         public static async Task<PdfHelper> FromEmailAsync(string emailFilePath, EmailType emailType, PageSize pageSize, bool includeAttachments = false) {
             using (var ms = File.OpenRead(emailFilePath)) {
@@ -97,7 +97,7 @@ namespace Sit.Pdf {
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with an email message.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with an email message.
         /// </summary>
         public static async Task<PdfHelper> FromEmailAsync(byte[] email, EmailType emailType, PageSize pageSize, bool includeAttachments = false) {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -107,7 +107,7 @@ namespace Sit.Pdf {
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with an email message.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with an email message.
         /// </summary>
         public static async Task<PdfHelper> FromEmailAsync(Stream email, EmailType emailType, PageSize pageSize, bool includeAttachments = false) {
             MimeMessage mimeMsg;

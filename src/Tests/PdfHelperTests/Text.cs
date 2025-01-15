@@ -1,7 +1,7 @@
-using Sit.Pdf.Tests.Resources;
+using Sitl.Pdf.Tests.Resources;
 using Xunit.Abstractions;
 
-namespace Sit.Pdf.Tests.PdfHelperTests {
+namespace Sitl.Pdf.Tests.PdfHelperTests {
 
     public class Text(ITestOutputHelper output) : TestBase(output) {
 

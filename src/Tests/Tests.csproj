@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <AssemblyName>Sit.PdfHelper.Tests</AssemblyName>
-    <RootNamespace>Sit.Pdf.Tests</RootNamespace>
+    <AssemblyName>Sitl.PdfHelper.Tests</AssemblyName>
+    <RootNamespace>Sitl.Pdf.Tests</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public class PdfArea {
         public PdfArea(float xLeft, float yTop, float xRight, float yBottom, int? page = null, bool yStartFromBottom = false) {

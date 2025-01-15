@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using iText.Kernel.Pdf;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public partial class PdfHelper {
 

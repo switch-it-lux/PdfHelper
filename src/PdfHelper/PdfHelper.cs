@@ -2,13 +2,13 @@
 using System.IO;
 using iText.Kernel.Pdf;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public partial class PdfHelper : IDisposable {
         Stream pdfStream;
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with 1 or more blank page(s).
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with 1 or more blank page(s).
         /// </summary>
         public PdfHelper(PageSize pageSize, int nbPages = 1) {
             if (nbPages < 1) throw new ArgumentOutOfRangeException(nameof(nbPages));
@@ -28,21 +28,21 @@ namespace Sit.Pdf {
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with a PDF file.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with a PDF file.
         /// </summary>
         public PdfHelper(string pdfFilePath) 
             : this(File.OpenRead(pdfFilePath)) { 
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with a PDF document.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with a PDF document.
         /// </summary>
         public PdfHelper(byte[] pdf)
             : this(new MemoryStream(pdf)) { 
         }
 
         /// <summary>
-        /// Initializes a new instance of the Sit.Pdf.PdfHelper class with a PDF document.
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with a PDF document.
         /// </summary>
         public PdfHelper(Stream pdf) {
             if (!IsValidPdf(pdf)) throw new ArgumentException("Invalid PDF");

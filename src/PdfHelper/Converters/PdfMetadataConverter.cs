@@ -4,7 +4,7 @@
 //using System.Linq;
 //using iText.Kernel.Pdf;
 
-//namespace Sit.Pdf {
+//namespace Sitl.Pdf {
 
 //    internal interface IPdfMetadataConverter {
 //        object ConvertFrom(PdfObject value);

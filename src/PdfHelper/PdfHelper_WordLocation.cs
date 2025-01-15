@@ -6,7 +6,7 @@ using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf.Canvas.Parser.Data;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public partial class PdfHelper {
 

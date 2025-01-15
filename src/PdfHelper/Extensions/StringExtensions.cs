@@ -1,4 +1,4 @@
-﻿namespace Sit.Pdf {
+﻿namespace Sitl.Pdf {
 
     internal static class StringExtensions {
 

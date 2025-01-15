@@ -4,7 +4,7 @@ using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas;
 using iText.Kernel.Pdf.Xobject;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public partial class PdfHelper {
 

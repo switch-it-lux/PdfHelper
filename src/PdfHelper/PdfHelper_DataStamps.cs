@@ -11,7 +11,7 @@ using iText.Layout;
 using iText.Layout.Element;
 using Newtonsoft.Json;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public partial class PdfHelper {
 

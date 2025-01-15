@@ -1,4 +1,4 @@
-﻿namespace Sit.Pdf {
+﻿namespace Sitl.Pdf {
 
     public readonly struct PageSize {
         public float Width { get; }

@@ -1,4 +1,4 @@
-﻿namespace Sit.Pdf {
+﻿namespace Sitl.Pdf {
 
     public class BarcodeLocation {
         public string BarcodeType { get; }

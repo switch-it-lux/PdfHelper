@@ -3,7 +3,7 @@ using iText.Kernel.Pdf;
 using iText.Layout.Properties;
 using iTextElement = iText.Layout.Element;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     internal static class ITextExtensions {
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     internal static class DictionaryExtensions {
 

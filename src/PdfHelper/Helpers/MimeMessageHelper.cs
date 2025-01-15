@@ -7,7 +7,7 @@ using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Filespec;
 using MimeKit;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     internal static class MimeMessageHelper {
 

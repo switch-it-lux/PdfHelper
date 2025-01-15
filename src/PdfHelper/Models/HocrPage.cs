@@ -1,4 +1,4 @@
-﻿namespace Sit.Pdf {
+﻿namespace Sitl.Pdf {
 
     internal class HocrPage {
         public int Page { get; }

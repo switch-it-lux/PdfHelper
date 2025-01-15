@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using Xunit.Abstractions;
 
-namespace Sit.Pdf.Tests {
+namespace Sitl.Pdf.Tests {
 
     public abstract class TestBase(ITestOutputHelper output) {
         protected ITestOutputHelper Output => output;

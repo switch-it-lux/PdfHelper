@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Sit.Pdf.Tests {
+namespace Sitl.Pdf.Tests {
 
     public class AppSettings {
-        public string WorkingFolder { get; set; } = "C:\\Temp\\Sit.Pdf.Tests";
+        public string WorkingFolder { get; set; } = "C:\\Temp\\Sitl.Pdf.Tests";
         public bool Teardown { get; set; } = true;
 
         static AppSettings? appSettings;

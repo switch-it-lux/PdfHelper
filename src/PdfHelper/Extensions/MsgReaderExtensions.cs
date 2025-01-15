@@ -1,6 +1,6 @@
 ﻿using static MsgReader.Outlook.Storage;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     internal static class MsgReaderExtensions {
 

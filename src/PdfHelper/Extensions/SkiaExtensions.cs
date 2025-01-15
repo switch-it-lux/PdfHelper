@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using SkiaSharp;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     internal static class SkiaExtensions {
 

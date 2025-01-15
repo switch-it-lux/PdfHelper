@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using iText.Kernel.Pdf;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public partial class PdfHelper {
 

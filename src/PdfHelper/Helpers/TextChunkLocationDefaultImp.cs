@@ -2,7 +2,7 @@
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     //see: https://stackoverflow.com/a/57905252
 

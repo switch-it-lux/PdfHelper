@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MimeKit;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     internal static class MimeMessageExtensions {
 

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public partial class PdfHelper {
 

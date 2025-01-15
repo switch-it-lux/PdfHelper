@@ -1,7 +1,7 @@
 ﻿//using System;
 //using iText.Kernel.Pdf;
 
-//namespace Sit.Pdf {
+//namespace Sitl.Pdf {
 
 //    internal static class PdfDateConverter {
         

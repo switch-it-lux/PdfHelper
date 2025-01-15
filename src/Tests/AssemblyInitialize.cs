@@ -1,9 +1,9 @@
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-[assembly: Xunit.TestFramework("Sit.Pdf.Tests.AssemblyInitialize", "Sit.PdfHelper.Tests")]
+[assembly: Xunit.TestFramework("Sitl.Pdf.Tests.AssemblyInitialize", "Sitl.PdfHelper.Tests")]
 
-namespace Sit.Pdf.Tests {
+namespace Sitl.Pdf.Tests {
 
     public sealed class AssemblyInitialize : XunitTestFramework, IDisposable {
         readonly AppSettings appSettings;

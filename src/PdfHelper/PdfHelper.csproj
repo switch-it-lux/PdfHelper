@@ -2,18 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Sit.PdfHelper</AssemblyName>
-    <RootNamespace>Sit.Pdf</RootNamespace>
+    <AssemblyName>Sitl.PdfHelper</AssemblyName>
+    <RootNamespace>Sitl.Pdf</RootNamespace>
     <Version>1.0.0-alpha.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\Sit.PdfHelper.xml</DocumentationFile>
+    <DocumentationFile>bin\Sitl.PdfHelper.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
     <Authors>Switch IT</Authors>
-    <Description>PDF basic utilities</Description>
+    <Description>Sitl.PdfHelper is a standard .Net 2.0 library for performing simple basic PDF manipulations.</Description>
+    <Copyright>Copyright (c) Switch IT</Copyright>
+    <PackageId>Sitl.PdfHelper</PackageId>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/switch-it-lux/PdfHelper</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

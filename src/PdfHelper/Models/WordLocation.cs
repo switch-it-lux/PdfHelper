@@ -4,7 +4,7 @@ using iText.Kernel.Geom;
 using iText.Kernel.Pdf.Canvas.Parser.Data;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public class WordLocation {
         public string Text { get; }

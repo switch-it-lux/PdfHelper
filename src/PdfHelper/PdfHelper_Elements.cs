@@ -14,7 +14,7 @@ using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Renderer;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     public partial class PdfHelper {
 

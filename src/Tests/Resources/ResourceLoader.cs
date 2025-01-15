@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Sit.Pdf.Tests.Resources {
+namespace Sitl.Pdf.Tests.Resources {
 
     internal static class ResourceLoader {
 

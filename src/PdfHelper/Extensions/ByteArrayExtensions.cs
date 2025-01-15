@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Sit.Pdf {
+namespace Sitl.Pdf {
 
     internal static class ByteArrayExtensions {
 

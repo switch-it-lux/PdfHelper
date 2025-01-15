@@ -1,6 +1,6 @@
 using Xunit.Abstractions;
 
-namespace Sit.Pdf.Tests.PdfHelperTests {
+namespace Sitl.Pdf.Tests.PdfHelperTests {
 
     public class Elements(ITestOutputHelper output) : TestBase(output) {
 
@@ -26,7 +26,7 @@ namespace Sit.Pdf.Tests.PdfHelperTests {
                     Anchor = PdfElementAnchor.BaselineCenter,
                     Color = System.Drawing.Color.Black,
                     FontSize = 12,
-                    Text = "Created with Sit.PdfHelper"
+                    Text = "Created with Sitl.PdfHelper"
                 }
             );
 
