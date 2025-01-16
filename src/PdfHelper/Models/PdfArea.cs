@@ -25,8 +25,8 @@ namespace Sitl.Pdf {
         internal float GetYTopFromBottom(float pageHeight) => YStartFromBottom ? YTop : pageHeight - YTop;
         internal float GetYBottomFromBottom(float pageHeight) => YStartFromBottom ? YBottom : pageHeight - YBottom;
 
-        internal PdfArea Copy() => new PdfArea(XLeft, YTop, XRight, YBottom, Page, YStartFromBottom);
-        internal PdfArea Copy(float pageHeight, bool yFromBottom) {
+        public PdfArea Copy() => new PdfArea(XLeft, YTop, XRight, YBottom, Page, YStartFromBottom);
+        public PdfArea Copy(float pageHeight, bool yFromBottom) {
             var res = Copy();
             if (yFromBottom && !res.YStartFromBottom) {
                 res.YTop = GetYTopFromBottom(pageHeight);

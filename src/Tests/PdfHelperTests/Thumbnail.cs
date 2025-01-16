@@ -12,7 +12,7 @@ namespace Sitl.Pdf.Tests.PdfHelperTests {
             Assert.Equal(3, pdfHelper.GetNumberOfPages());
 
             Output.WriteLine($"Generating thumbnail...");
-            var res = pdfHelper.GenerateThumbnail(1, 200, -1, true);
+            var res = pdfHelper.GenerateThumbnail(1, 200, null, true);
             Assert.NotNull(res);
 
             var fileName = GetTestFileName($"-p1", "png");
@@ -29,7 +29,7 @@ namespace Sitl.Pdf.Tests.PdfHelperTests {
             Assert.Null(png);
 
             Output.WriteLine($"Generating thumbnail...");
-            png = pdfHelper.GenerateThumbnail(1, 100, -1, true);
+            png = pdfHelper.GenerateThumbnail(1, 100, null, true);
             Assert.NotNull(png);
 
             Output.WriteLine($"Setting thumbnail to 'SamplePdf1.pdf'...");

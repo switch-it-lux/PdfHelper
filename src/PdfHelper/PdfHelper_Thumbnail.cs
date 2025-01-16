@@ -75,23 +75,39 @@ namespace Sitl.Pdf {
         /// <summary>
         /// Generates a thumbnail (PNG image) for the requested page of the PDF document.
         /// </summary>
-        public byte[] GenerateThumbnail(int page = 1, int width = -1, int height = -1, bool whiteBackground = false, int dpi = 96)
+        public byte[] GenerateThumbnail(int page = 1, int? width = null, int? height = null, bool whiteBackground = false, int dpi = 96)
             => GenerateThumbnail(page, width, height, whiteBackground, dpi, out _, out _);
 
         /// <summary>
         /// Generates a thumbnail (PNG image) for the requested page of the PDF document.
         /// </summary>
-        public byte[] GenerateThumbnail(int page, int width, int height, bool whiteBackground, int dpi, out int thumbnailWidth, out int thumbnailHeight) {
+        public byte[] GenerateThumbnail(int page, int? width, int? height, out int thumbnailWidth, out int thumbnailHeight)
+            => GenerateThumbnail(page, width, height, false, out thumbnailWidth, out thumbnailHeight);
+
+        /// <summary>
+        /// Generates a thumbnail (PNG image) for the requested page of the PDF document.
+        /// </summary>
+        public byte[] GenerateThumbnail(int page, int? width, int? height, bool whiteBackground, out int thumbnailWidth, out int thumbnailHeight)
+            => GenerateThumbnail(page, width, height, whiteBackground, 96, out thumbnailWidth, out thumbnailHeight);
+
+        /// <summary>
+        /// Generates a thumbnail (PNG image) for the requested page of the PDF document.
+        /// </summary>
+        public byte[] GenerateThumbnail(int page, int? width, int? height, bool whiteBackground, int dpi, out int thumbnailWidth, out int thumbnailHeight) {
             var docPageCount = GetNumberOfPages();
             if (page <= 0 || page > docPageCount) throw new ArgumentOutOfRangeException(nameof(page));
-            if (width <= 0 && height <= 0) throw new ArgumentException("Thumbnail width or height should be defined");
             var pageSize = GetPageSize(page);
 
-            thumbnailWidth = width > 0 ? width : -1;
-            thumbnailHeight = height > 0 ? height : -1;
-            var ratio = pageSize.Height / pageSize.Width;
-            if (thumbnailWidth <= 0) thumbnailWidth = (int)(height / ratio);
-            else if (thumbnailHeight <= 0) thumbnailHeight = (int)(width * ratio);
+            if ((width == null || width <= 0) && (height == null || height <= 0)) {
+                thumbnailWidth = (int)pageSize.Width;
+                thumbnailHeight = (int)pageSize.Height;
+            } else {
+                thumbnailWidth = width != null && width > 0 ? width.Value : -1;
+                thumbnailHeight = height != null && height > 0 ? height.Value : -1;
+                var ratio = pageSize.Height / pageSize.Width;
+                if (thumbnailWidth <= 0) thumbnailWidth = (int)(height / ratio);
+                else if (thumbnailHeight <= 0) thumbnailHeight = (int)(width * ratio);
+            }
 
             var renderOptions = new PDFtoImage.RenderOptions(
                 Dpi: dpi,

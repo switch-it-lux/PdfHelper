@@ -38,12 +38,14 @@ namespace Sitl.Pdf {
                         var text = ReplaceLigatures(wordNode.InnerText);
                         var (x, y, width, height) = wordNode.GetNodeTitleAttributeBbox();
 
-                        var lineNode = wordNode.SelectSingleNode("./parent::xhtml:span[@class='ocr_line']", nsmgr);
-                        var angle = lineNode?.GetNodeTitleAttributeAsFloat("textangle") ?? -1;
-                        var fontSize = lineNode?.GetNodeTitleAttributeAsFloat("x_fsize") ?? -1;
+                        //Parent of ocr_word is not always a ocr_line -> can be ocr_header
+                        //var lineNode = wordNode.SelectSingleNode("./parent::xhtml:span[@class='ocr_line']", nsmgr);
+                        var wordParentNode = wordNode.SelectSingleNode("./parent::xhtml:span", nsmgr);
+                        var angle = wordParentNode?.GetNodeTitleAttributeAsFloat("textangle") ?? -1;
+                        var fontSize = wordParentNode?.GetNodeTitleAttributeAsFloat("x_fsize") ?? -1;
                         if (fontSize < 0) {
                             //Issue https://github.com/tesseract-ocr/tesseract/issues/3303 (x_size rendered instead of x_fsize)
-                            fontSize = lineNode.GetNodeTitleAttributeAsFloat("x_size");
+                            fontSize = wordParentNode?.GetNodeTitleAttributeAsFloat("x_size") ?? -1;
                         }
 
                         if (x > -1 && !string.IsNullOrEmpty(text)) {

@@ -78,10 +78,15 @@ namespace Sitl.Pdf {
                     for (int page = 1; page <= pdfDoc.GetNumberOfPages(); page++) {
                         PdfPage p = pdfDoc.GetPage(page);
                         string content = PdfTextExtractor.GetTextFromPage(p);
-                        var match = new Regex(stampStartTag + "(.*)" + stampEndTag).Match(content);
-                        Dictionary<string, string> stamp = null;
-                        if (match.Success) {
-                            stamp = JsonConvert.DeserializeObject<Dictionary<string, string>>(Encoding.UTF8.GetString(Convert.FromBase64String(match.Groups[1].Value)));
+                        var matches = new Regex(stampStartTag + "(.*?)" + stampEndTag).Matches(content);
+                        if (matches.Count > 0) {
+                            var stamp = new Dictionary<string, string>();
+                            foreach (Match match in matches) {
+                                if (match.Success) {
+                                    var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(Encoding.UTF8.GetString(Convert.FromBase64String(match.Groups[1].Value)));
+                                    foreach (var kp in dict) stamp[kp.Key] = kp.Value;
+                                }
+                            }
                             stamps.Add(page, stamp);
                         }
                     }
