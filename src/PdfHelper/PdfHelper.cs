@@ -49,6 +49,13 @@ namespace Sitl.Pdf {
             pdfStream = pdf;
         }
 
+        /// <summary>
+        /// Copies a Sitl.Pdf.PdfHelper.
+        /// </summary>
+        public PdfHelper(PdfHelper copy) {
+            copy.PdfStream.CopyTo(pdfStream);
+        }
+
         public Stream PdfStream {
             get {
                 if (pdfStream != null) 

@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Sitl.PdfHelper</AssemblyName>
     <RootNamespace>Sitl.Pdf</RootNamespace>
-    <Version>1.0.0-alpha.0</Version>
+    <Version>1.0.0-alpha.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\Sitl.PdfHelper.xml</DocumentationFile>
@@ -12,16 +12,17 @@
     <Authors>Switch IT</Authors>
     <Description>Sitl.PdfHelper is a standard .Net 2.0 library for performing simple basic PDF manipulations.</Description>
     <Copyright>Copyright (c) Switch IT</Copyright>
+    <RepositoryUrl>https://github.com/switch-it-lux/PdfHelper</RepositoryUrl>
     <PackageId>Sitl.PdfHelper</PackageId>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/switch-it-lux/PdfHelper</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/switch-it-lux/PdfHelper</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.60" />
-    <PackageReference Include="itext7" Version="7.1.15" />
+    <PackageReference Include="itext7" Version="7.1.19" />
     <PackageReference Include="itext7.pdfhtml" Version="3.0.4" />
     <PackageReference Include="MailKit" Version="4.9.0" />
     <PackageReference Include="MsgReader" Version="4.4.10" />

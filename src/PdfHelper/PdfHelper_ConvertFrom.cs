@@ -18,6 +18,34 @@ namespace Sitl.Pdf {
     public partial class PdfHelper {
 
         /// <summary>
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with an image.
+        /// </summary>
+        public static PdfHelper FromImage(string imageFilePath, float margin = 0f, float scale = 1f, PageSize? pageSize = null) {
+            return FromImages(new[] { File.OpenRead(imageFilePath).ReadAsBytes(closeStream: true) }, margin, scale, pageSize);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with an image.
+        /// </summary>
+        public static PdfHelper FromImage(Stream image, float margin = 0f, float scale = 1f, PageSize? pageSize = null) {
+            return FromImages(new[] { image.ReadAsBytes() }, margin, scale, pageSize);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with an image.
+        /// </summary>
+        public static PdfHelper FromImage(Bitmap bitmap, float margin = 0f, float scale = 1f, PageSize? pageSize = null) {
+            return FromImages(new[] { bitmap.ReadAsBytes() }, margin, scale, pageSize);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with an image.
+        /// </summary>
+        public static PdfHelper FromImage(byte[] image, float margin = 0f, float scale = 1f, PageSize? pageSize = null) {
+            return FromImages(new[] { image }, margin, scale, pageSize);
+        }
+
+        /// <summary>
         /// Initializes a new instance of the Sitl.Pdf.PdfHelper class with one or more images. Each image will induce a new page.
         /// </summary>
         public static PdfHelper FromImages(IEnumerable<string> imageFilePaths, float margin = 0f, float scale = 1f, PageSize? pageSize = null) {

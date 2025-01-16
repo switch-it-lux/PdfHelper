@@ -4,6 +4,12 @@ using Xunit.Abstractions;
 namespace Sitl.Pdf.Tests.PdfHelperTests {
 
     public class Metadata(ITestOutputHelper output) : TestBase(output) {
+        readonly Dictionary<string, object> metadataSample = new() {
+            { "Author", "AuthorName" },
+            { "CustomString", "Abc" },
+            { "CustomDouble", 345.89 },
+            { "CustomDate", new DateTime(2022, 11, 19, 14, 32, 53) }
+        };
 
         [Fact]
         public void AddMetadataToNewPdf() {
@@ -11,8 +17,7 @@ namespace Sitl.Pdf.Tests.PdfHelperTests {
 
             using (var pdfHelper = new PdfHelper(PageSizes.A4)) {
                 Output.WriteLine($"Setting metadata to new PDF...");
-                pdfHelper.SetMetadata("Author", "AuthorValue");
-                pdfHelper.SetMetadata("Custom", "CustomValue");
+                pdfHelper.SetMetadata(metadataSample);
 
                 Output.WriteLine($"Saving PDF file to '{fileName}'...");
                 pdfHelper.Save(fileName);
@@ -21,10 +26,10 @@ namespace Sitl.Pdf.Tests.PdfHelperTests {
             Output.WriteLine($"Opening PDF file '{fileName}'...");
             using (var pdfHelper = new PdfHelper(fileName)) {
                 Output.WriteLine($"Getting metadata...");
-                var a = pdfHelper.GetMetadata("Author");
-                var c = pdfHelper.GetMetadata("Custom");
-                Assert.Equal("AuthorValue", a);
-                Assert.Equal("CustomValue", c);
+                var metadata = pdfHelper.GetMetadata();
+                foreach (var key in metadataSample.Keys) {
+                    Assert.Equal(metadataSample[key], metadata[key]);
+                }
             }
         }
 
@@ -35,10 +40,7 @@ namespace Sitl.Pdf.Tests.PdfHelperTests {
             Output.WriteLine($"Loading PDF resource 'SamplePdf1.pdf'...");
             using (var pdfHelper = new PdfHelper(ResourceLoader.ReadAsBytes("SamplePdf1.pdf"))) {
                 Output.WriteLine($"Setting metadata...");
-                pdfHelper.SetMetadata(new Dictionary<string, string> {
-                        { "Author", "AuthorValue" },
-                        { "Custom", "CustomValue" }
-                    });
+                pdfHelper.SetMetadata(metadataSample);
 
                 Output.WriteLine($"Saving PDF file to '{fileName}'...");
                 pdfHelper.Save(fileName);
@@ -47,9 +49,10 @@ namespace Sitl.Pdf.Tests.PdfHelperTests {
             Output.WriteLine($"Opening PDF file '{fileName}'...");
             using (var pdfHelper = new PdfHelper(fileName)) {
                 Output.WriteLine($"Getting metadata...");
-                var dic = pdfHelper.GetMetadata();
-                Assert.Equal("AuthorValue", dic["Author"]);
-                Assert.Equal("CustomValue", dic["Custom"]);
+                var metadata = pdfHelper.GetMetadata();
+                foreach (var key in metadataSample.Keys) {
+                    Assert.Equal(metadataSample[key], metadata[key]);
+                }
             }
         }
     }

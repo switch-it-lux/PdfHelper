@@ -9,24 +9,15 @@ namespace Sitl.Pdf {
         /// <summary>
         /// Searches for barcode locations in the PDF document.
         /// </summary>
-        public BarcodeLocation[] GetBarcodeLocations(int searchPage = -1, int stopAfterXMatch = -1, int dpi = 96, CancellationToken cancellationToken = default) 
-            => GetBarcodeLocations(searchPage, null, stopAfterXMatch, dpi, cancellationToken);
+        public BarcodeLocation[] GetBarcodeLocations(int? searchPage = null, IEnumerable<PdfArea> searchAreas = null, int? stopAfterXMatch = null, int dpi = 96, CancellationToken cancellationToken = default) {
+            if (searchPage <= 0) searchPage = null;
 
-        /// <summary>
-        /// Searches for barcode locations in the PDF document.
-        /// </summary>
-        public BarcodeLocation[] GetBarcodeLocations(IEnumerable<PdfArea> searchAreas, int stopAfterXMatch = -1, int dpi = 96, CancellationToken cancellationToken = default)
-            => GetBarcodeLocations(-1, searchAreas, stopAfterXMatch, dpi, cancellationToken);
-        
-        BarcodeLocation[] GetBarcodeLocations(int searchPage, IEnumerable<PdfArea> searchAreas, int stopAfterXMatch, int dpi, CancellationToken cancellationToken) {
-            if (searchPage <= 0) searchPage = -1;
             var res = new List<BarcodeLocation>();
-
             if (stopAfterXMatch == 0) return res.ToArray();
 
             //limit search to necessary pages
-            int startPage = searchPage > 0 ? searchPage : searchAreas?.Min(x => x.Page > 0 ? x.Page : null) ?? 1;
-            int? nbPages = searchPage > 0 ? 1 : (int?)null;
+            int startPage = searchPage != null ? searchPage.Value : searchAreas?.Min(x => x.Page > 0 ? x.Page : null) ?? 1;
+            int? nbPages = searchPage != null ? 1 : (int?)null;
             if (nbPages == null && searchAreas != null && searchAreas.All(x => x.Page.HasValue && x.Page.Value > 0))
                 nbPages = searchAreas.Max(x => x.Page.Value) - startPage + 1;
 
@@ -46,7 +37,7 @@ namespace Sitl.Pdf {
                         if (b.Location.IsIncludedInAny(searchAreas)) res.Add(b);
                     }
                 }
-                if (stopAfterXMatch > 0 && stopAfterXMatch == res.Count) return res.Take(stopAfterXMatch).ToArray();
+                if (stopAfterXMatch != null && stopAfterXMatch == res.Count) return res.Take(stopAfterXMatch.Value).ToArray();
             }
 
             return res.ToArray();

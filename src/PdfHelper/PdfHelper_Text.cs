@@ -91,9 +91,8 @@ namespace Sitl.Pdf {
                                     
                                     pdfCanvas.BeginText();
                                     foreach (var word in hocrPage.WordLocations) {
-                                        pdfCanvas.SetFontAndSize(pdfFont, word.FontSize * fontScale);
+                                        pdfCanvas.SetFontAndSize(pdfFont, (word.FontSize > 0 ? word.FontSize : 8) * fontScale);
 
-                                        //TODO: angle management
                                         if (word.TextAngle == 90) {
                                             pdfCanvas.SetTextMatrix(0f, 1f, -1f, 0f, (word.X + word.Width) * fontScale, pdfPage.GetPageSize().GetHeight() - word.Height * fontScale - word.Y * fontScale);
                                         } else if (word.TextAngle == 180) {
