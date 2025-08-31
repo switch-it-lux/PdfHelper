@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using iText.IO.Font.Constants;
 using iText.Kernel.Font;
 using iText.Kernel.Pdf;
@@ -12,6 +13,24 @@ using iText.Kernel.Pdf.Extgstate;
 namespace Sitl.Pdf {
 
     public partial class PdfHelper {
+
+        /// <summary>
+        /// Returns all text of the document.
+        /// </summary>
+        public string GetAllText(int page = -1) {
+            var sb = new StringBuilder();
+            using (PdfReader reader = new PdfReader(PdfStream)) {
+                using (PdfDocument pdfDoc = new PdfDocument(reader)) {
+                    for (int i = 1; i <= pdfDoc.GetNumberOfPages(); i++) {
+                        if (page <= 0 || page == i) {
+                            string text = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), new SimpleTextExtractionStrategy());
+                            sb.Append(text).AppendLine().AppendLine();
+                        }
+                    }
+                }
+            }
+            return sb.ToString();
+        }
 
         /// <summary>
         /// Checks if the PDF document contains any text.
