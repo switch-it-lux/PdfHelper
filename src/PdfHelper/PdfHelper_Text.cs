@@ -1,12 +1,16 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using iText.IO.Font.Constants;
 using iText.Kernel.Font;
+using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas;
 using iText.Kernel.Pdf.Canvas.Parser;
+using iText.Kernel.Pdf.Canvas.Parser.Data;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using iText.Kernel.Pdf.Extgstate;
 
@@ -15,15 +19,18 @@ namespace Sitl.Pdf {
     public partial class PdfHelper {
 
         /// <summary>
-        /// Returns all text of the document.
+        /// Returns all text of the document using a tolerant extraction strategy.
         /// </summary>
-        public string GetAllText(int page = -1) {
+        /// <param name="page">Page number (1-based). -1 for all pages.</param>
+        /// <param name="toleranceX">Maximum horizontal distance (points) to consider words in the group of words.</param>
+        /// <param name="toleranceY">Maximum vertical distance (points) to consider words on the same line.</param>
+        public string GetAllText(int page = -1, float toleranceX = 2f, float toleranceY = 2f) {
             var sb = new StringBuilder();
             using (PdfReader reader = new PdfReader(PdfStream)) {
                 using (PdfDocument pdfDoc = new PdfDocument(reader)) {
                     for (int i = 1; i <= pdfDoc.GetNumberOfPages(); i++) {
                         if (page <= 0 || page == i) {
-                            string text = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), new SimpleTextExtractionStrategy());
+                            string text = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), new TolerantTextExtractionStrategy(toleranceX, toleranceY));
                             sb.Append(text).AppendLine().AppendLine();
                         }
                     }
@@ -107,7 +114,7 @@ namespace Sitl.Pdf {
                                         pdfCanvas.SetExtGState(new PdfExtGState().SetFillOpacity(0f));
                                     else
                                         pdfCanvas.SetColor(new iText.Kernel.Colors.DeviceRgb(textColor.Value), true);
-                                    
+
                                     pdfCanvas.BeginText();
                                     foreach (var word in hocrPage.WordLocations) {
                                         pdfCanvas.SetFontAndSize(pdfFont, (word.FontSize > 0 ? word.FontSize : 8) * fontScale);
@@ -134,6 +141,81 @@ namespace Sitl.Pdf {
             } catch {
                 newPdfStream.Dispose();
                 throw;
+            }
+        }
+
+        /// <summary>
+        /// Custom strategy that tolerates small vertical and horizontal differences between words.
+        /// </summary>
+        class TolerantTextExtractionStrategy : ITextExtractionStrategy {
+            readonly float toleranceX;
+            readonly float toleranceY;
+            readonly List<WordChunk> chunks = new List<WordChunk>();
+
+            public TolerantTextExtractionStrategy(float toleranceX = 2f, float toleranceY = 2f) {
+                this.toleranceX = toleranceX;
+                this.toleranceY = toleranceY;
+            }
+
+            public void EventOccurred(IEventData data, EventType type) {
+                if (type == EventType.RENDER_TEXT) {
+                    var renderInfo = (TextRenderInfo)data;
+                    var bottomLeft = renderInfo.GetDescentLine().GetStartPoint();
+                    var topRight = renderInfo.GetAscentLine().GetEndPoint();
+                    chunks.Add(new WordChunk {
+                        Text = renderInfo.GetText(),
+                        XStart = bottomLeft.Get(Vector.I1),
+                        XEnd = topRight.Get(Vector.I1),
+                        Y = bottomLeft.Get(Vector.I2)
+                    });
+                }
+            }
+
+            public ICollection<EventType> GetSupportedEvents() => null;
+
+            public string GetResultantText() {
+                // Group chunks by line (Y tolerance)
+                var lines = new List<List<WordChunk>>();
+                foreach (var chunk in chunks) {
+                    bool added = false;
+                    foreach (var line in lines) {
+                        if (Math.Abs(chunk.Y - line[0].Y) <= toleranceY) {
+                            line.Add(chunk);
+                            added = true;
+                            break;
+                        }
+                    }
+                    if (!added) lines.Add(new List<WordChunk> { chunk });
+                }
+
+                // Merge horizontally close words (X tolerance) and generate text
+                var sb = new StringBuilder();
+                foreach (var line in lines) {
+                    var sorted = line.OrderBy(c => c.XStart).ToList();
+                    var merged = new List<string>();
+
+                    WordChunk prev = null;
+                    foreach (var chunk in sorted) {
+                        if (prev == null) {
+                            merged.Add(chunk.Text);
+                        } else {
+                            if (chunk.XStart - prev.XEnd <= toleranceX)
+                                merged[merged.Count - 1] += chunk.Text;
+                            else
+                                merged.Add(chunk.Text);
+                        }
+                        prev = chunk;
+                    }
+                    sb.AppendLine(string.Join(" ", merged));
+                }
+                return sb.ToString();
+            }
+
+            class WordChunk {
+                public string Text;
+                public float XStart;
+                public float XEnd;
+                public float Y;
             }
         }
     }
