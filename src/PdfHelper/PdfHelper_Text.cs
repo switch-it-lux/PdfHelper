@@ -19,24 +19,24 @@ namespace Sitl.Pdf {
     public partial class PdfHelper {
 
         /// <summary>
-        /// Returns all text of the document using a tolerant extraction strategy.
+        /// Returns all text of the document pages using a tolerant extraction strategy.
         /// </summary>
         /// <param name="page">Page number (1-based). -1 for all pages.</param>
         /// <param name="toleranceX">Maximum horizontal distance (points) to consider words in the group of words.</param>
         /// <param name="toleranceY">Maximum vertical distance (points) to consider words on the same line.</param>
-        public string GetAllText(int page = -1, float toleranceX = 2f, float toleranceY = 2f) {
-            var sb = new StringBuilder();
+        public PageText[] GetPageText(int page = -1, float toleranceX = 2f, float toleranceY = 2f) {
+            var res = new List<PageText>();
             using (PdfReader reader = new PdfReader(PdfStream)) {
                 using (PdfDocument pdfDoc = new PdfDocument(reader)) {
                     for (int i = 1; i <= pdfDoc.GetNumberOfPages(); i++) {
                         if (page <= 0 || page == i) {
-                            string text = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), new TolerantTextExtractionStrategy(toleranceX, toleranceY));
-                            sb.Append(text).AppendLine().AppendLine();
+                            var text = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), new TolerantTextExtractionStrategy(toleranceX, toleranceY));
+                            res.Add(new PageText(i, text));
                         }
                     }
                 }
             }
-            return sb.ToString();
+            return res.ToArray();
         }
 
         /// <summary>
