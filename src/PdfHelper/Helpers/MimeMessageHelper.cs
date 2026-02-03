@@ -1,8 +1,4 @@
-﻿using iText.Html2pdf;
-using iText.Kernel.Pdf;
-using iText.Kernel.Pdf.Filespec;
-using MimeKit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,8 +6,13 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using iText.Html2pdf;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Filespec;
+using MimeKit;
 
 namespace Sitl.Pdf {
+
     internal static class MimeMessageHelper {
         // Regex are static + compiled for performance and consistency.
         // Matches empty src/href attributes (e.g., src="" or href= ) so they can be removed.
