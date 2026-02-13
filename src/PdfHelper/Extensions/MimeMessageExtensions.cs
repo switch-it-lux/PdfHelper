@@ -23,9 +23,9 @@ namespace Sitl.Pdf {
             if (addresses == null) return null;
             return string.Join(", ", addresses.Select(a => {
                 if (includeDisplayName && !string.IsNullOrWhiteSpace(a.Name) && a.Name != a.Address)
-                    return a.Name + " &lt;" + a.Address + "&gt;";
+                    return a.Name + " <" + a.Address + ">";
                 else
-                    return "&lt;" + a.Address + "&gt;";
+                    return "<" + a.Address + ">";
             }));
         }
 
