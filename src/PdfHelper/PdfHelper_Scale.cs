@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using iText.Kernel.Events;
+using iText.Kernel.Pdf.Event;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas;
 using iText.Kernel.Pdf.Xobject;
@@ -42,7 +42,7 @@ namespace Sitl.Pdf {
             }
         }
 
-        class ScaleEventHandler : IEventHandler {
+        class ScaleEventHandler : AbstractPdfDocumentEventHandler {
             protected float scale = 1;
             protected PdfDictionary pageDict;
 
@@ -54,7 +54,7 @@ namespace Sitl.Pdf {
                 this.pageDict = pageDict;
             }
 
-            public void HandleEvent(Event currentEvent) {
+            protected override void OnAcceptedEvent(AbstractPdfDocumentEvent currentEvent) {
                 PdfDocumentEvent docEvent = (PdfDocumentEvent)currentEvent;
                 PdfPage page = docEvent.GetPage();
 

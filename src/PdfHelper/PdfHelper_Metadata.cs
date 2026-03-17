@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using iText.Kernel.Pdf;
 
 namespace Sitl.Pdf {
@@ -18,7 +19,8 @@ namespace Sitl.Pdf {
             var res = new Dictionary<string, object>();
             using (PdfReader reader = new PdfReader(PdfStream)) {
                 using (PdfDocument pdfDoc = new PdfDocument(reader)) {
-                    PdfDictionary infoDictionary = pdfDoc.GetTrailer().GetAsDictionary(PdfName.Info);
+                    var infoDictionary = GetInfoDictionary(pdfDoc);
+                    if (infoDictionary == null) return res;
                     foreach (PdfName key in infoDictionary.KeySet()) {
                         var val = converter.ConvertFrom(infoDictionary.Get(key));
                         if (ignoreNullValues && val == null) continue;
@@ -45,13 +47,14 @@ namespace Sitl.Pdf {
                             using (PdfWriter writer = new PdfWriter(newPdfStream)) {
                                 writer.SetCloseStream(false);
                                 using (PdfDocument pdfDoc = new PdfDocument(reader, writer)) {
-                                    PdfDictionary infoDictionary = pdfDoc.GetTrailer().GetAsDictionary(PdfName.Info);
+                                    var infoDictionary = GetInfoDictionary(pdfDoc);
                                     foreach (var entry in metadata) {
                                         if (removeNullValues && entry.Value == null)
                                             infoDictionary.Remove(new PdfName(entry.Key));
                                         else
                                             infoDictionary.Put(new PdfName(entry.Key), converter.ConvertTo(entry.Value));
                                     }
+                                    infoDictionary.SetModified();
                                 }
                             }
                         }
@@ -63,6 +66,17 @@ namespace Sitl.Pdf {
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the PDF info dictionary from the document.
+        /// In iText 9, the info dictionary is managed internally by PdfDocumentInfo
+        /// and is not accessible via the trailer until the document is closed.
+        /// </summary>
+        private static PdfDictionary GetInfoDictionary(PdfDocument pdfDoc) {
+            var docInfo = pdfDoc.GetDocumentInfo();
+            var field = docInfo.GetType().GetField("infoDictionary", BindingFlags.NonPublic | BindingFlags.Instance);
+            return (PdfDictionary)field?.GetValue(docInfo);
         }
     }
 }
