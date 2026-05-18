@@ -32,7 +32,7 @@ namespace Sitl.Pdf {
                     Dpi: dpi,
                     BackgroundColor: whiteBackground ? SkiaSharp.SKColors.White : SkiaSharp.SKColors.Transparent
                 );
-                using (var img = PDFtoImage.Conversion.ToImage(ToByteArray(), null, p - 1, renderOptions)) {
+                using (var img = PDFtoImage.Conversion.ToImage(ToByteArray(), p - 1, null, renderOptions)) {
                     yield return new BitmapPage(p, (int)pageSize.Width, (int)pageSize.Height, img.Width, img.Height, img.ToBitmap());
                 }
             }
