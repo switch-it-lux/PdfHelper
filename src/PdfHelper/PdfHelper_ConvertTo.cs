@@ -24,7 +24,7 @@ namespace Sitl.Pdf {
             var docNbPages = GetNumberOfPages();
             if (nbPages == null) nbPages = docNbPages - (startPage - 1);
             if (startPage > docNbPages) throw new ArgumentOutOfRangeException(nameof(startPage));
-            if (startPage - 1 + nbPages.Value > docNbPages) new ArgumentOutOfRangeException(nameof(nbPages));
+            if (startPage - 1 + nbPages.Value > docNbPages) throw new ArgumentOutOfRangeException(nameof(nbPages));
 
             for (int p = startPage; p < startPage + nbPages.Value; p++) {
                 var pageSize = GetPageSize(p);

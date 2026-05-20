@@ -111,9 +111,9 @@ namespace Sitl.Pdf {
 
             var renderOptions = new PDFtoImage.RenderOptions(
                 Dpi: dpi,
-                Width: thumbnailWidth, 
-                Height: thumbnailHeight, 
-                WithAnnotations: true, 
+                Width: thumbnailWidth,
+                Height: thumbnailHeight,
+                WithAnnotations: true,
                 BackgroundColor: whiteBackground ? SkiaSharp.SKColors.White : SkiaSharp.SKColors.Transparent
             );
             using (var ms = new MemoryStream()) {

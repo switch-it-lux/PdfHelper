@@ -37,7 +37,9 @@ namespace Sitl.Pdf {
             } else if (value.GetObjectType() == PdfObject.STRING) {
                 var s = (value as PdfString).GetValue();
                 if (PdfDateConverter.TryParse(s, out var d)) return d;
-                else return s;
+                if (double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out var n)) return n;
+                if (bool.TryParse(s, out var b)) return b;
+                return s;
 
             } else {
                 return null;
