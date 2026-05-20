@@ -24,7 +24,7 @@ namespace Sitl.Pdf {
             var docNbPages = GetNumberOfPages();
             if (nbPages == null) nbPages = docNbPages - (startPage - 1);
             if (startPage > docNbPages) throw new ArgumentOutOfRangeException(nameof(startPage));
-            if (startPage - 1 + nbPages.Value > docNbPages) new ArgumentOutOfRangeException(nameof(nbPages));
+            if (startPage - 1 + nbPages.Value > docNbPages) throw new ArgumentOutOfRangeException(nameof(nbPages));
 
             for (int p = startPage; p < startPage + nbPages.Value; p++) {
                 var pageSize = GetPageSize(p);
@@ -32,7 +32,7 @@ namespace Sitl.Pdf {
                     Dpi: dpi,
                     BackgroundColor: whiteBackground ? SkiaSharp.SKColors.White : SkiaSharp.SKColors.Transparent
                 );
-                using (var img = PDFtoImage.Conversion.ToImage(ToByteArray(), p - 1, null, renderOptions)) {
+                using (var img = PDFtoImage.Conversion.ToImage(ToByteArray(), null, p - 1, renderOptions)) {
                     yield return new BitmapPage(p, (int)pageSize.Width, (int)pageSize.Height, img.Width, img.Height, img.ToBitmap());
                 }
             }

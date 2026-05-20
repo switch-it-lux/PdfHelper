@@ -111,13 +111,13 @@ namespace Sitl.Pdf {
 
             var renderOptions = new PDFtoImage.RenderOptions(
                 Dpi: dpi,
-                Width: thumbnailWidth, 
-                Height: thumbnailHeight, 
-                WithAnnotations: true, 
+                Width: thumbnailWidth,
+                Height: thumbnailHeight,
+                WithAnnotations: true,
                 BackgroundColor: whiteBackground ? SkiaSharp.SKColors.White : SkiaSharp.SKColors.Transparent
             );
             using (var ms = new MemoryStream()) {
-                PDFtoImage.Conversion.SavePng(ms, ToByteArray(), page - 1, null, renderOptions);
+                PDFtoImage.Conversion.SavePng(ms, ToByteArray(), null, page - 1, renderOptions);
                 return ms.ToArray();
             }
         }

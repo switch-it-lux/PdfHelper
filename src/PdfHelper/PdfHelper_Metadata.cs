@@ -25,7 +25,7 @@ namespace Sitl.Pdf {
                         var val = converter.ConvertFrom(infoDictionary.Get(key));
                         if (ignoreNullValues && val == null) continue;
                         if (ignoreNullValues && val is string && string.IsNullOrEmpty((string)val)) continue;
-                        res.Add(key.GetValue(), converter.ConvertFrom(infoDictionary.Get(key)));
+                        res.Add(key.GetValue(), val);
                     }
                 }
             }
