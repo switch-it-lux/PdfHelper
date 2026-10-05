@@ -153,6 +153,8 @@ namespace Sitl.Pdf {
 
                         var options = new ConverterProperties();
                         options.SetBaseUri("file:///");
+                        // Email HTML is untrusted: only public http/https resources are downloaded
+                        options.SetResourceRetriever(new SafeResourceRetriever());
 
                         HtmlConverter.ConvertToPdf(html, pdfDoc, options);
                     }
